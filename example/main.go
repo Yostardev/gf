@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"kit.yo-star.com/go-kit/gf"
+	"github.com/Yostardev/gf"
 	"time"
 )
 

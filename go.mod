@@ -1,3 +1,3 @@
-module kit.yo-star.com/go-kit/gf
+module github.com/Yostardev/gf
 
-go 1.19
+go 1.18
