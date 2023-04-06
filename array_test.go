@@ -216,6 +216,28 @@ func TestArrayIntersectString(t *testing.T) {
 	}
 }
 
+func TestArrayHasIntersectString(t *testing.T) {
+	type args struct {
+		array1 []string
+		array2 []string
+	}
+	tests := []struct {
+		name string
+		args args
+		want bool
+	}{
+		{name: "success", args: args{array1: []string{"a", "b", "c"}, array2: []string{"x", "a", "z"}}, want: true},
+		{name: "success", args: args{array1: []string{"a", "b", "c"}, array2: []string{"x", "q", "z"}}, want: false},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := ArrayHasIntersect(tt.args.array1, tt.args.array2); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("ArrayIntersect() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
 func TestArrayUnionInt(t *testing.T) {
 	type args struct {
 		array1 []int

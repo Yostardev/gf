@@ -33,6 +33,18 @@ func ArrayContains[T any](array []T, val T) bool {
 	return false
 }
 
+// ArrayHasIntersect 数组是否有交集
+func ArrayHasIntersect[T comparable](array1, array2 []T) bool {
+	set := NewSet[T]()
+	set.Add(array1...)
+	for i := range array2 {
+		if set.Has(array2[i]) {
+			return true
+		}
+	}
+	return false
+}
+
 // ArrayIntersect 数组交集
 func ArrayIntersect[T comparable](array1, array2 []T) []T {
 	arr := make([]T, 0)
