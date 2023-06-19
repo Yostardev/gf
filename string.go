@@ -3,9 +3,8 @@ package gf
 import (
 	"bytes"
 	"compress/gzip"
-	"io/ioutil"
+	"io"
 	"strings"
-	"unsafe"
 )
 
 func StringJoin(variables ...string) string {
@@ -21,19 +20,6 @@ func StringJoin(variables ...string) string {
 		b.WriteString(variables[i])
 	}
 	return b.String()
-}
-
-func StringToBytes(s string) []byte {
-	return *(*[]byte)(unsafe.Pointer(
-		&struct {
-			string
-			Cap int
-		}{s, len(s)},
-	))
-}
-
-func BytesToString(b []byte) string {
-	return *(*string)(unsafe.Pointer(&b))
 }
 
 func StringCreateGzip(str string) ([]byte, error) {
@@ -60,7 +46,7 @@ func StringParseGzip(data []byte) (string, error) {
 		return "", err
 	}
 	defer r.Close()
-	b, err := ioutil.ReadAll(r)
+	b, err := io.ReadAll(r)
 	if err != nil {
 		return "", err
 	}
