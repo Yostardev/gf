@@ -15,7 +15,7 @@ func ArrayDeduplicate[T comparable](array []T) []T {
 			arr = append(arr, array[i])
 		}
 	}
-	return arr
+	return arr[:len(arr):len(arr)]
 }
 
 // ArrayEqual 数组比较
@@ -55,7 +55,7 @@ func ArrayIntersect[T comparable](array1, array2 []T) []T {
 			arr = append(arr, array2[i])
 		}
 	}
-	return arr
+	return arr[:len(arr):len(arr)]
 }
 
 // ArrayUnion 数组并集
@@ -69,7 +69,7 @@ func ArrayUnion[T comparable](array1, array2 []T) []T {
 			arr = append(arr, array2[i])
 		}
 	}
-	return arr
+	return arr[:len(arr):len(arr)]
 }
 
 // ArrayDifference 数组差集
@@ -84,7 +84,7 @@ func ArrayDifference[T comparable](array1, array2 []T) []T {
 			arr = append(arr, array1[i])
 		}
 	}
-	return arr
+	return arr[:len(arr):len(arr)]
 }
 
 // ArrayFilter 数组过滤
@@ -95,7 +95,7 @@ func ArrayFilter[T any](array []T, predicate func(T) bool) []T {
 			arr = append(arr, array[i])
 		}
 	}
-	return arr
+	return arr[:len(arr):len(arr)]
 }
 
 // ArrayReverse 数组反转
@@ -104,7 +104,7 @@ func ArrayReverse[T any](array []T) []T {
 	for i := range array {
 		arr[len(array)-i-1] = array[i]
 	}
-	return arr
+	return arr[:len(arr):len(arr)]
 }
 
 // ArrayBubbleSort 数组冒泡排序
@@ -201,7 +201,7 @@ func ArraySplit[T any](array []T, step int) [][]T {
 		endIndex = startIndex + step
 		if endIndex >= length {
 			result = append(result, array[startIndex:])
-			return result
+			return result[:len(result):len(result)]
 		}
 		result = append(result, array[startIndex:endIndex])
 		startIndex += step
