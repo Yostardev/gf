@@ -192,18 +192,15 @@ func partition[T any](array []T, left, right int, less func(array []T, i, j int)
 }
 
 // ArraySplit 把数组按步长拆分为多个数组
-func ArraySplit[T any](array []T, step int) [][]T {
-	var startIndex = 0
-	var endIndex = 0
-	var result [][]T
-	length := len(array)
-	for {
-		endIndex = startIndex + step
-		if endIndex >= length {
-			result = append(result, array[startIndex:])
-			return result[:len(result):len(result)]
+func ArraySplit[T any](list []T, chunkSize int) [][]T {
+	var chunks = (len(list) + chunkSize - 1) / chunkSize
+	result := make([][]T, 0, chunks)
+	for i := 0; i < len(list); i += chunkSize {
+		end := i + chunkSize
+		if end > len(list) {
+			end = len(list)
 		}
-		result = append(result, array[startIndex:endIndex])
-		startIndex += step
+		result = append(result, list[i:end])
 	}
+	return result
 }
